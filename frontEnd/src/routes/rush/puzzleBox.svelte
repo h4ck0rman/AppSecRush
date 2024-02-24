@@ -47,7 +47,7 @@ if __name__ == '__main__':
         `
 
         editorContainer["readOnly"] = true;
-        // Your monaco instance is ready, let's display some code!
+        // monaco instance is ready, let's display some code!
         const editor = monaco.editor.create(editorContainer);
         const model = monaco.editor.createModel(
             code,

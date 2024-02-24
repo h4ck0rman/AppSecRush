@@ -1,2 +1,3 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="flex items-center justify-center h-screen w-screen">
+    <h1 class="text-2xl text-white text-center w-full text-bold uppercase">Application Security Rush</h1>
+</div>
