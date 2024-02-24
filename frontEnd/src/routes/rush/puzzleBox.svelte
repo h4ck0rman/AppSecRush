@@ -11,13 +11,49 @@
         // (onMount() will only be executed in the browser, which is what we want)
         monaco = (await import('./monaco')).default;
 
+        const code = `
+from flask import Flask, request, send_file
+from jinja2 import Environment
+import pdfkit
+import os
+
+app = Flask(__name__)
+
+@app.route('/generate_pdf', methods=['POST'])
+def generate_pdf():
+    data = request.json
+    html_template = data.get('html_template', '')
+    user_data = data.get('user_data', {})
+    
+    # Initialize a Jinja2 environment
+    env = Environment()
+
+    # load the template into the environment 
+    template = env.from_string(html_template)
+
+    # Render the template with user_data
+    rendered_html = template.render(user_data)
+    
+    # Convert HTML to PDF
+    pdf_path = '/tmp/output.pdf'
+    pdfkit.from_string(rendered_html, pdf_path)
+    
+    # Send the generated PDF back to the client
+    return send_file(pdf_path, attachment_filename='output.pdf')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+        `
+
         // Your monaco instance is ready, let's display some code!
         const editor = monaco.editor.create(editorContainer);
         const model = monaco.editor.createModel(
-            "console.log('Hello from Monaco! (the editor, not the city...)')",
-            'javascript'
+            code,
+            "python",
         );
         editor.setModel(model);
+        monaco.editor.setTheme('vs-dark')
     });
 
     onDestroy(() => {
@@ -26,6 +62,7 @@
     });
 </script>
 
-<div class="flex items-center py-10 bg-zinc-900 h-4/5">
-    <div class="w-full h-full px-20 py-10" bind:this={editorContainer} />
+<div class="flex items-center bg-zinc-900 h-full">
+
+    <div class="w-full h-full text-lg" bind:this={editorContainer} />
 </div>
