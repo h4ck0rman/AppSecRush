@@ -46,11 +46,12 @@ if __name__ == '__main__':
 
         `
 
+        editorContainer["readOnly"] = true;
         // Your monaco instance is ready, let's display some code!
         const editor = monaco.editor.create(editorContainer);
         const model = monaco.editor.createModel(
             code,
-            "python",
+            "python"
         );
         editor.setModel(model);
         monaco.editor.setTheme('vs-dark')
@@ -63,6 +64,5 @@ if __name__ == '__main__':
 </script>
 
 <div class="flex items-center bg-zinc-900 h-full">
-
     <div class="w-full h-full text-lg" bind:this={editorContainer} />
 </div>
