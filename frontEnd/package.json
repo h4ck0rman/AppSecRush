@@ -12,10 +12,14 @@
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"autoprefixer": "^10.4.17",
+		"monaco-editor": "^0.46.0",
 		"postcss": "^8.4.35",
 		"svelte": "^4.2.7",
 		"tailwindcss": "^3.4.1",
 		"vite": "^5.0.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"svelte-prism": "^1.1.6"
+	}
 }
