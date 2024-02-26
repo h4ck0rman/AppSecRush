@@ -4,10 +4,6 @@
     import MonacoBox from "./monacoBox.svelte";
 
     const profile = "h4ck0rLogo.png";
-    // onMount(async () => {
-    //     // fetch the profile photo for the panel
-        
-    // });
     
     // state for active puzzle rush session UI
     export let rushActive = false;
@@ -18,14 +14,27 @@
     // Example function to substitute for backend response
     let puzzles = [];
     let count = 0;
-    const solvePuzzle = () => {
+    let codeUpdate;
+    let code = 'import requests;';
+    let language = 'python';
+    const solvePuzzle = () => {   
         count += 1;
         let results = {num: count, result:((count % 2) == 0)};
 
         puzzles.push(results);
         puzzles = puzzles;
+
+        nextPuzzle()
     }
 
+    const nextPuzzle = () => {
+        // get the next puzzle from backend api
+        
+        // reflect the next puzzle in the monaco editor
+        codeUpdate(code, language);
+    }
+
+    
 </script>
 
 <div class='flex flex-row w-screen h-screen rounded-lg'>
@@ -51,10 +60,10 @@
     </span>
 
     {#if rushActive}
-    <span class='basis-3/4'><MonacoBox code="import os;" language="python" /></span>
+        <span class='basis-3/4'><MonacoBox code={code} language="python" bind:updateContent={codeUpdate}/></span>
 
     {:else}
-    <span class='basis-3/4'><p>Loading ...</p></span>
+        <span class='basis-3/4'><h1 class="mx-auto">Application Security Puzzle Rush</h1></span>
     {/if}
 
 </div>

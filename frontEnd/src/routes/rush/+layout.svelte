@@ -10,3 +10,4 @@
       @apply bg-zinc-800;
     }
 </style>
+
