@@ -15,9 +15,8 @@
     // Example function to substitute for backend response
     let puzzles = [];
     let count = 0;
-    let codeUpdate;
-    let code = 'import requests;';
-    let language = 'python';
+    
+    
     const solvePuzzle = () => {   
         count += 1;
         let results = {num: count, result:((count % 2) == 0)};
@@ -28,6 +27,9 @@
         newPuzzle()
     }
 
+    let codeUpdate;
+    let code = 'import requests;';
+    let language = 'python';
     const newPuzzle = () => {
         // get the next puzzle from backend api
 
