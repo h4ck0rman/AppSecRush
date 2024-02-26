@@ -31,8 +31,8 @@
     
         Monaco = await import("monaco-editor");
         editor = Monaco.editor.create(editorContainer, {
-        value: "/* Loading... */",
-        language: "html",
+        value: "\n// Waiting to begin Puzzle Rush...\n",
+        language: "java",
         theme: "vs-dark",
         readOnly: true,
         });

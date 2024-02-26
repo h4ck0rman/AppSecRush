@@ -9,6 +9,7 @@
     export let rushActive = false;
     const toggleStart = () => {
         rushActive = !rushActive;
+        newPuzzle()
     }
 
     // Example function to substitute for backend response
@@ -24,10 +25,10 @@
         puzzles.push(results);
         puzzles = puzzles;
 
-        nextPuzzle()
+        newPuzzle()
     }
 
-    const nextPuzzle = () => {
+    const newPuzzle = () => {
         // get the next puzzle from backend api
 
         // reflect the next puzzle in the monaco editor
@@ -68,11 +69,8 @@
         </div>      
     </span>
 
-    {#if rushActive}
-        <span class='basis-3/4'><MonacoBox code={code} language="python" bind:updateContent={codeUpdate}/></span>
 
-    {:else}
-        <span class='basis-3/4'><h1 class="mx-auto">Application Security Puzzle Rush</h1></span>
-    {/if}
+    <span class='basis-3/4'><MonacoBox bind:updateContent={codeUpdate}/></span>
+
 
 </div>
